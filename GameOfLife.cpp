@@ -3,11 +3,15 @@
 
 using namespace std;
 
-GameOfLife::GameOfLife(int pHeight, int pWidth) { }
+GameOfLife::GameOfLife(int pMode) {
+	mode = pMode;
+}
 
 GameOfLife::~GameOfLife() { }
 
-void GameOfLife::getMates(int r, int c) { }
+void GameOfLife::getMates(int r, int c) {
+
+}
 
 void GameOfLife::printGeneration() {
 	for (int i = 0; i < height; i++) {
@@ -28,7 +32,7 @@ void GameOfLife::simulateGeneration() {
 
 }
 
-void createRandomPlanet(int height, int width, float density) {
+void GameOfLife::createRandomPlanet(int pHeight, int pWidth, float density) {
 	height = pHeight;
 	width = pWidth;
 
@@ -42,7 +46,7 @@ void createRandomPlanet(int height, int width, float density) {
 	}
 }
 
-void createPlanetFromFile(string fileName) {
+void GameOfLife::createPlanetFromFile(string fileName) {
 	//TODO: read the file, first lines are height and width
 	// the rest are 'X' and '-'
 	// Read each character from each line and fill into generation, like in createRandomPlanet

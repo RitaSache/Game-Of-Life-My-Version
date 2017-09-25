@@ -13,7 +13,7 @@ int main() {
 	cout << "World width: " << endl;
 	cin >> width;
 
-	GameOfLife w (height, width);
+	GameOfLife w (1);
 	
 	w.printGeneration();
 

@@ -3,13 +3,14 @@ using namespace std;
 
 class GameOfLife {
 	public:
-		GameOfLife();
+		GameOfLife(int pMode);
 		~GameOfLife();
-		void createRandomPlanet(int height, int width, float density);
+		void createRandomPlanet(int pHeight, int pWidth, float density);
 		void createPlanetFromFile(string fileName);
 		void printGeneration();
 		void simulateGeneration();
 	private:
+		int mode;
 		int height;
 		int width;
 		int generationCount;
