@@ -18,5 +18,6 @@ int main() {
 	GameOfLife p (1);
 	p.createRandomPlanet(height, width, density);
 	p.printGeneration();
+	p.simulateGeneration();
 
 }

@@ -79,6 +79,11 @@ void GameOfLife::printGeneration() {
 
 void GameOfLife::simulateGeneration() {
 	// Loop through each cell in planet
+	for (int i = 0; i < height; i++) {
+		for(int j = 0; j < width; j++) {
+			cout << "For[" << i << "]" << "[" << j << "]" << ": " << getMates(i,j) << endl;
+		}
+	}
 	// Find mates using getMates
 	// Update nextGeneration according to mates
 	// Copy nextGeneration to generation
