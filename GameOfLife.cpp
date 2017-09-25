@@ -9,8 +9,26 @@ GameOfLife::GameOfLife(int pMode) {
 
 GameOfLife::~GameOfLife() { }
 
-void GameOfLife::getMates(int r, int c) {
+int GameOfLife::getMates(int r, int c) {
+	if (mode == 1) {
+		return getMatesClassic(r, c);
+	} else if (mode == 2) {
+		return getMatesDoughnut(r, c);
+	} else {
+		return getMatesMirror(r, c);
+	}
+}
 
+int GameOfLife::getMatesClassic(int r, int c) {
+	return 0;
+}
+
+int GameOfLife::getMatesDoughnut(int r, int c) {
+	return 0;
+}
+
+int GameOfLife::getMatesMirror(int r, int c) {
+	return 0;
 }
 
 void GameOfLife::printGeneration() {

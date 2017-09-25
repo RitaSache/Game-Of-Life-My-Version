@@ -16,5 +16,8 @@ class GameOfLife {
 		int generationCount;
 		char** generation;
 		char** nextGeneration;
-		void getMates(int r, int c);
+		int getMates(int r, int c);
+		int getMatesClassic(int r, int c);
+		int getMatesDoughnut(int r, int c);
+		int getMatesMirror(int r, int c);
 };
