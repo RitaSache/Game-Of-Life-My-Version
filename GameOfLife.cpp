@@ -1,10 +1,13 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "GameOfLife.h"
 
 using namespace std;
 
 GameOfLife::GameOfLife(int pMode) {
 	mode = pMode;
+	srand(time(NULL));
 }
 
 GameOfLife::~GameOfLife() { }
@@ -87,13 +90,14 @@ void GameOfLife::simulateGeneration() {
 void GameOfLife::createRandomPlanet(int pHeight, int pWidth, float density) {
 	height = pHeight;
 	width = pWidth;
+	float randNum;
 
 	generation = new char*[height];
 	for (int i = 0; i < height; i++) {
 		generation[i] = new char[width];
 		for(int j = 0; j < width; j++) {
-			//TODO: get random number, if lower than density then 'X' else '-'
-			generation[i][j] = '-';
+			randNum = rand()/float(RAND_MAX);
+			generation[i][j] = randNum < density ? 'X' : '-';
 		}
 	}
 }
