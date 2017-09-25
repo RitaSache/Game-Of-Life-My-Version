@@ -20,7 +20,41 @@ int GameOfLife::getMates(int r, int c) {
 }
 
 int GameOfLife::getMatesClassic(int r, int c) {
-	return 0;
+	int sum = 0;
+
+	if (r - 1 >= 0 && c - 1 >= 0 && generation[r - 1][c - 1] == 'X') {
+		sum++;
+	}
+
+	if (r - 1 >= 0 && generation[r - 1][c] == 'X') {
+		sum++;
+	}
+
+	if (r - 1 >= 0 && c + 1 < width && generation[r - 1][c + 1] == 'X') {
+		sum++;
+	}
+
+	if (c - 1 >= 0 && generation[r][c - 1] == 'X') { 
+		sum++;
+	}
+
+	if (c + 1 < width && generation[r][c + 1] == 'X') {
+		sum++;
+	}
+
+	if (r + 1 < height && c - 1 >= 0 && generation[r + 1][c - 1] == 'X') {
+		sum++;
+	}
+
+	if (r + 1 < height && generation[r + 1][c] == 'X') {
+		sum++;
+	}
+
+	if (r + 1 < height && c + 1 < width && generation[r + 1][c + 1] == 'X') {
+		sum++;
+	}	
+
+	return sum;
 }
 
 int GameOfLife::getMatesDoughnut(int r, int c) {
