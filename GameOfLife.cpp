@@ -60,7 +60,7 @@ int GameOfLife::getMatesClassic(int r, int c) {
 	return sum;
 }
 
-int GameOfLife::getMatesDoughnut(int r, int c) {
+int GameOfLife::getMatesDoughnut(int r, int c) { 
 	return 0;
 }
 
@@ -81,7 +81,19 @@ void GameOfLife::simulateGeneration() {
 	// Loop through each cell in planet
 	for (int i = 0; i < height; i++) {
 		for(int j = 0; j < width; j++) {
-			cout << "For[" << i << "]" << "[" << j << "]" << ": " << getMates(i,j) << endl;
+			//cout << "For[" << i << "]" << "[" << j << "]" << ": " << getMates(i,j) << endl;
+			if(getMates(i,j) <= 1) {
+				nextGeneration[i][j] = '-';
+			}
+			if(getMates(i,j) == 2) {
+				nextGeneration[i][j] = generation[i][j];
+			}
+			if(getMates(i,j) == 3) {
+				nextGeneration[i][j] = 'X';
+			}
+			if(getMates(i,j) >= 4) {
+				nextGeneration[i][j] = '-';
+			}
 		}
 	}
 	// Find mates using getMates
