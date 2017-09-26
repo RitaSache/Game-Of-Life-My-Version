@@ -69,6 +69,7 @@ int GameOfLife::getMatesMirror(int r, int c) {
 }
 
 void GameOfLife::printGeneration() {
+	cout << generationCount << endl;
 	for (int i = 0; i < height; i++) {
 		for(int j = 0; j < width; j++) {
 			cout << generation[i][j];
@@ -95,26 +96,31 @@ void GameOfLife::simulateGeneration() {
 				nextGeneration[i][j] = '-';
 			}
 		}
-	}
-	// Find mates using getMates
-	// Update nextGeneration according to mates
-	// Copy nextGeneration to generation
-	// Clear nextGeneration
-	// increment the generationCount
 
+	}
+	char** tempGeneration = generation;
+	generation = nextGeneration;
+	nextGeneration = tempGeneration;
+	generationCount++;
 }
 
 void GameOfLife::createRandomPlanet(int pHeight, int pWidth, float density) {
 	height = pHeight;
 	width = pWidth;
 	float randNum;
+	generationCount = 0;
 
-	generation = new char*[height];
-	for (int i = 0; i < height; i++) {
+	generation = new char*[height]; // making an array of pointers to pointers to chars. when you make an array we make a pointer to first element in an array.
+	//when you make an array of arrays you make a pointer to pointers
+	nextGeneration = new char*[height];
+	for (int i = 0; i < height; i++) { //for each row we create an array of chars
 		generation[i] = new char[width];
+		nextGeneration[i] = new char[width];
 		for(int j = 0; j < width; j++) {
 			randNum = rand()/float(RAND_MAX);
 			generation[i][j] = randNum < density ? 'X' : '-';
+			nextGeneration[i][j] = randNum < density ? 'X' : '-';
+
 		}
 	}
 }

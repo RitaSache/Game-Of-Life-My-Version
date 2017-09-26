@@ -19,5 +19,6 @@ int main() {
 	p.createRandomPlanet(height, width, density);
 	p.printGeneration();
 	p.simulateGeneration();
+	p.printGeneration();
 
 }
