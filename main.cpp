@@ -15,7 +15,7 @@ int main() {
 	cin >> width;
 	cout << "World density: " << endl;
 	cin >> density;
-	GameOfLife p (2);
+	GameOfLife p (3);
 	p.createRandomPlanet(height, width, density);
 	p.printGeneration();
 	p.simulateGeneration();

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <math.h>
 #include "GameOfLife.h"
 
 using namespace std;
@@ -99,7 +100,57 @@ int GameOfLife::getHorizontalDoughnutCell(int c) {
 }
 
 int GameOfLife::getMatesMirror(int r, int c) {
-	return 0;
+	int sum = 0;
+	if (generation[getVerticalMirrorCell(r - 1)][getHorizontalMirrorCell(c - 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalMirrorCell(r - 1)][getHorizontalMirrorCell(c)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalMirrorCell(r - 1)][getHorizontalMirrorCell(c + 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalMirrorCell(r)][getHorizontalMirrorCell(c - 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalMirrorCell(r)][getHorizontalMirrorCell(c + 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalMirrorCell(r + 1)][getHorizontalMirrorCell(c - 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalMirrorCell(r + 1)][getHorizontalMirrorCell(c)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalMirrorCell(r + 1)][getHorizontalMirrorCell(c + 1)] == 'X') {
+		sum++;
+	}
+	return sum;
+	
+}
+
+int GameOfLife::getHorizontalMirrorCell(int c) {
+	if(c < 0) {
+		return 0;
+	}
+	else if(c == width) {
+		return width - 1;
+	}
+	else {
+		return c;
+	}
+}
+
+int GameOfLife::getVerticalMirrorCell(int r) {
+	if(r < 0) {
+		return 0;
+	}
+	else if(r == height) {
+		return height - 1;
+	}
+	else {
+		return r;
+	}
 }
 
 void GameOfLife::printGeneration() {
@@ -164,4 +215,35 @@ void GameOfLife::createPlanetFromFile(string fileName) {
 	// Read each character from each line and fill into generation, like in createRandomPlanet
 
 }
+bool GameOfLife::isGenerationEmpty(){
+	bool isEmpty;
+	for(int i = 0; i < height; i++) {
+		for(int j = 0; j < width; j++) {
+			if(generation[i][j] == 'X')  {
+				isEmpty = false;
+			}
+		}
+	}
+	return isEmpty;
+}
+
+/*bool GameOfLife::isGenerationStable() {
+	for(int i = 0; i < height; i++) {
+		for(int j = 0; j < width; j++) {
+
+		}
+	}
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
 

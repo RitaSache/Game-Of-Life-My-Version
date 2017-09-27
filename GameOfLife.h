@@ -24,4 +24,6 @@ class GameOfLife {
 		int getMatesMirror(int r, int c);
 		int getHorizontalDoughnutCell(int c);
 		int getVerticalDoughnutCell(int r);
+		int getHorizontalMirrorCell(int c);
+		int getVerticalMirrorCell(int r);
 };
