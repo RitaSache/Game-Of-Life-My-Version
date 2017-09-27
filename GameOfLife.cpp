@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <math.h>
+
 #include "GameOfLife.h"
 
 using namespace std;
@@ -203,8 +204,13 @@ void GameOfLife::createRandomPlanet(int pHeight, int pWidth, float density) {
 		nextGeneration[i] = new char[width];
 		for(int j = 0; j < width; j++) {
 			randNum = rand()/float(RAND_MAX);
-			generation[i][j] = randNum < density ? 'X' : '-';
-			nextGeneration[i][j] = randNum < density ? 'X' : '-';
+			if(randNum < density) {
+				generation[i][j] = 'X';
+			}
+			else {
+				generation[i][j] = '-';
+			}
+			nextGeneration[i][j] = '-';
 		} //initialize arrays with 0 first before putting generation tghere
 	}
 }
@@ -216,7 +222,7 @@ void GameOfLife::createPlanetFromFile(string fileName) {
 
 }
 bool GameOfLife::isGenerationEmpty(){
-	bool isEmpty;
+	bool isEmpty = true;
 	for(int i = 0; i < height; i++) {
 		for(int j = 0; j < width; j++) {
 			if(generation[i][j] == 'X')  {
@@ -227,13 +233,17 @@ bool GameOfLife::isGenerationEmpty(){
 	return isEmpty;
 }
 
-/*bool GameOfLife::isGenerationStable() {
+bool GameOfLife::isGenerationStable() {
+	bool isStable = true;
 	for(int i = 0; i < height; i++) {
 		for(int j = 0; j < width; j++) {
-
+			if(generation[i][j] != nextGeneration[i][j]) {
+				isStable = false;
+			}
 		}
 	}
-}*/
+	return isStable;
+}
 
 
 

@@ -17,12 +17,15 @@ int main() {
 	cin >> density;
 	GameOfLife p (3);
 	p.createRandomPlanet(height, width, density);
-	p.printGeneration();
-	p.simulateGeneration();
-	p.printGeneration();
-	/*while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
-		p.printGeneration();
+	
+	/*	p.printGeneration();
 		p.simulateGeneration();
-	}*/
+		p.printGeneration();*/
+	p.printGeneration();
+	while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+		p.simulateGeneration();
+		p.printGeneration();
+		
+	}
 
 }
