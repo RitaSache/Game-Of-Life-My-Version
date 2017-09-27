@@ -61,7 +61,41 @@ int GameOfLife::getMatesClassic(int r, int c) {
 }
 
 int GameOfLife::getMatesDoughnut(int r, int c) { 
-	return 0;
+	int sum = 0;
+	if (generation[getVerticalDoughnutCell(r - 1)][getHorizontalDoughnutCell(c - 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalDoughnutCell(r - 1)][getHorizontalDoughnutCell(c)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalDoughnutCell(r - 1)][getHorizontalDoughnutCell(c + 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalDoughnutCell(r)][getHorizontalDoughnutCell(c - 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalDoughnutCell(r)][getHorizontalDoughnutCell(c + 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalDoughnutCell(r + 1)][getHorizontalDoughnutCell(c - 1)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalDoughnutCell(r + 1)][getHorizontalDoughnutCell(c)] == 'X') {
+		sum++;
+	}
+	if (generation[getVerticalDoughnutCell(r + 1)][getHorizontalDoughnutCell(c + 1)] == 'X') {
+		sum++;
+	}
+	return sum;
+}
+
+int GameOfLife::getVerticalDoughnutCell(int r) {
+	return (r % height + height) % height;
+
+}
+
+int GameOfLife::getHorizontalDoughnutCell(int c) {
+	return (c % width + width) % width;
 }
 
 int GameOfLife::getMatesMirror(int r, int c) {
@@ -120,8 +154,7 @@ void GameOfLife::createRandomPlanet(int pHeight, int pWidth, float density) {
 			randNum = rand()/float(RAND_MAX);
 			generation[i][j] = randNum < density ? 'X' : '-';
 			nextGeneration[i][j] = randNum < density ? 'X' : '-';
-
-		}
+		} //initialize arrays with 0 first before putting generation tghere
 	}
 }
 
@@ -131,3 +164,4 @@ void GameOfLife::createPlanetFromFile(string fileName) {
 	// Read each character from each line and fill into generation, like in createRandomPlanet
 
 }
+

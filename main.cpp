@@ -15,10 +15,14 @@ int main() {
 	cin >> width;
 	cout << "World density: " << endl;
 	cin >> density;
-	GameOfLife p (1);
+	GameOfLife p (2);
 	p.createRandomPlanet(height, width, density);
 	p.printGeneration();
 	p.simulateGeneration();
 	p.printGeneration();
+	/*while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+		p.printGeneration();
+		p.simulateGeneration();
+	}*/
 
 }

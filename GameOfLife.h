@@ -9,6 +9,8 @@ class GameOfLife {
 		void createPlanetFromFile(string fileName);
 		void printGeneration();
 		void simulateGeneration();
+		bool isGenerationEmpty();
+		bool isGenerationStable();
 	private:
 		int mode;
 		int height;
@@ -20,4 +22,6 @@ class GameOfLife {
 		int getMatesClassic(int r, int c);
 		int getMatesDoughnut(int r, int c);
 		int getMatesMirror(int r, int c);
+		int getHorizontalDoughnutCell(int c);
+		int getVerticalDoughnutCell(int r);
 };
