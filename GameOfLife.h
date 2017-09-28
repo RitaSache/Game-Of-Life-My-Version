@@ -11,6 +11,7 @@ class GameOfLife {
 		void simulateGeneration();
 		bool isGenerationEmpty();
 		bool isGenerationStable();
+		void writeGenerationIntoFile(string otherFile);
 	private:
 		int mode;
 		int height;

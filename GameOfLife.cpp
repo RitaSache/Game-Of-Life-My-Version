@@ -283,6 +283,18 @@ bool GameOfLife::isGenerationStable() {
 	return isStable;
 }
 
+void GameOfLife::writeGenerationIntoFile(string otherFile){
+	ofstream outputFile;
+	outputFile.open(otherFile);
+	outputFile << generationCount << endl;
+	for (int i = 0; i < height; i++) {
+		for(int j = 0; j < width; j++) {
+			outputFile << generation[i][j];
+		}
+		outputFile << endl;
+	}
+}
+
 
 
 

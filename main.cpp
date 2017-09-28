@@ -10,6 +10,8 @@ int main() {
 	int mode;
 	string mapFile;
 	string fileName;
+	int outputOption;
+	string otherFile;
 
 	cout << "Would you like to provide a map file? (yes),(no)" << endl;
 	cin >> mapFile;
@@ -20,14 +22,40 @@ int main() {
 		cout << "Provide a mode you want: if Classic mode press (1) and enter, if Doughnut mode press (2) and enter, if Mirror mode press (3) and enter" << endl;
 		cin >> mode;
 		GameOfLife p (mode);
-		p.createPlanetFromFile(fileName);
-		p.printGeneration();
-		while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
-			p.simulateGeneration();
-			p.printGeneration();
+		cout << "If you want to press Enter type (1), if you want a pause between generations type (2), if you want to output into a file press (3)" << endl; 
+		cin >> outputOption;
 		
+		if(outputOption == 3) {
+			cout << "please enter file name to output to" << endl;
+			cin >> otherFile;
+			p.createPlanetFromFile(fileName);
+			p.writeGenerationIntoFile(otherFile);
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+			p.simulateGeneration();
+			p.writeGenerationIntoFile(otherFile);
+			}
 		}
-
+		else if(outputOption == 1) {
+			p.createPlanetFromFile(fileName);
+			p.printGeneration();
+			cin.get();
+			cin.get();
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+				p.simulateGeneration();
+				p.printGeneration();
+				cin.get();
+			}
+		}
+		else {
+			p.createPlanetFromFile(fileName);
+			p.printGeneration();
+			system("pause");
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+				p.simulateGeneration();
+				p.printGeneration();
+				system("pause");
+			}
+		}
 	}
 	else if(mapFile == "no") {
 		cout << "Input the dimensions of the world " << endl;
