@@ -285,7 +285,7 @@ bool GameOfLife::isGenerationStable() {
 
 void GameOfLife::writeGenerationIntoFile(string otherFile){
 	ofstream outputFile;
-	outputFile.open(otherFile);
+	outputFile.open(otherFile, ios::out | ios::app);
 	outputFile << generationCount << endl;
 	for (int i = 0; i < height; i++) {
 		for(int j = 0; j < width; j++) {
@@ -293,6 +293,7 @@ void GameOfLife::writeGenerationIntoFile(string otherFile){
 		}
 		outputFile << endl;
 	}
+	outputFile.close();
 }
 
 

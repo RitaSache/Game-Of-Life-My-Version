@@ -31,8 +31,8 @@ int main() {
 			p.createPlanetFromFile(fileName);
 			p.writeGenerationIntoFile(otherFile);
 			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
-			p.simulateGeneration();
-			p.writeGenerationIntoFile(otherFile);
+				p.simulateGeneration();
+				p.writeGenerationIntoFile(otherFile);
 			}
 			cout << "Press enter to exit the program " << endl;
 			cin.ignore();
