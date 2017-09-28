@@ -2,7 +2,9 @@
 #include <cstdlib>
 #include <ctime>
 #include <math.h>
-
+#include <fstream>
+#include <sstream>
+#include <string>
 #include "GameOfLife.h"
 
 using namespace std;
@@ -216,11 +218,47 @@ void GameOfLife::createRandomPlanet(int pHeight, int pWidth, float density) {
 }
 
 void GameOfLife::createPlanetFromFile(string fileName) {
-	//TODO: read the file, first lines are height and width
-	// the rest are 'X' and '-'
-	// Read each character from each line and fill into generation, like in createRandomPlanet
+	ifstream inputFile;
+	inputFile.open(fileName);
+	string line;
+	char ch;
+	generationCount = 0;
 
+
+	if(!inputFile) {
+		cout << "File not found" << endl;
+		exit(0);
+	}
+
+	getline(inputFile,line);
+	istringstream issHeight(line);
+	issHeight >> height;
+	getline(inputFile,line);
+	istringstream issWidth(line);
+	issWidth >> width;
+
+
+	generation = new char*[height];
+	nextGeneration = new char*[height];
+	for (int i = 0; i < height; i++) {
+		generation[i] = new char[width];
+		nextGeneration[i] = new char[width];
+			for(int j = 0; j < width; j++) {
+				inputFile >> ch;
+				if (ch == 'X') {
+					generation[i][j] = 'X';
+				}
+				else {
+					generation[i][j] = '-';
+				}
+				nextGeneration[i][j] = '-';
+			}
+			
+			
+	}
+	inputFile.close();
 }
+
 bool GameOfLife::isGenerationEmpty(){
 	bool isEmpty = true;
 	for(int i = 0; i < height; i++) {
