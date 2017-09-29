@@ -1,3 +1,9 @@
+//Rita (Eteri) Sachechelashvili
+//1928162
+//sache100@mail.chapman.edu
+//CPSC-350-02
+//Assignment 2
+//purpose of this file is to serve as implementation file for Game of Life
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -9,13 +15,15 @@
 
 using namespace std;
 
+//constructor for Game of Life
 GameOfLife::GameOfLife(int pMode) {
 	mode = pMode;
 	srand(time(NULL));
 }
 
+//deconstructor for Game of life
 GameOfLife::~GameOfLife() { }
-
+//get neighbours of cells with getMates method depending on the mode of the game
 int GameOfLife::getMates(int r, int c) {
 	if (mode == 1) {
 		return getMatesClassic(r, c);
@@ -25,7 +33,7 @@ int GameOfLife::getMates(int r, int c) {
 		return getMatesMirror(r, c);
 	}
 }
-
+//gets neighbours if there is an X in a neighbour cell in Classic mode
 int GameOfLife::getMatesClassic(int r, int c) {
 	int sum = 0;
 
@@ -63,7 +71,7 @@ int GameOfLife::getMatesClassic(int r, int c) {
 
 	return sum;
 }
-
+//gets neighbours if there is an X in a neighbour cell in Doughnut (Torus) mode
 int GameOfLife::getMatesDoughnut(int r, int c) { 
 	int sum = 0;
 	if (generation[getVerticalDoughnutCell(r - 1)][getHorizontalDoughnutCell(c - 1)] == 'X') {
@@ -93,15 +101,16 @@ int GameOfLife::getMatesDoughnut(int r, int c) {
 	return sum;
 }
 
+//takes care of vertical Doughnut grid shape 
 int GameOfLife::getVerticalDoughnutCell(int r) {
 	return (r % height + height) % height;
 
 }
-
+//takes care of horizontal Doughnut grid shape 
 int GameOfLife::getHorizontalDoughnutCell(int c) {
 	return (c % width + width) % width;
 }
-
+//gets neighbours if there is an X in a neighbour cell in Mirror mode
 int GameOfLife::getMatesMirror(int r, int c) {
 	int sum = 0;
 	if (generation[getVerticalMirrorCell(r - 1)][getHorizontalMirrorCell(c - 1)] == 'X') {
@@ -131,7 +140,7 @@ int GameOfLife::getMatesMirror(int r, int c) {
 	return sum;
 	
 }
-
+//takes care of vertical Mirror grid shpe
 int GameOfLife::getHorizontalMirrorCell(int c) {
 	if(c < 0) {
 		return 0;
@@ -143,7 +152,7 @@ int GameOfLife::getHorizontalMirrorCell(int c) {
 		return c;
 	}
 }
-
+//takes care of horizontal Mirror grid shpe
 int GameOfLife::getVerticalMirrorCell(int r) {
 	if(r < 0) {
 		return 0;
@@ -155,7 +164,7 @@ int GameOfLife::getVerticalMirrorCell(int r) {
 		return r;
 	}
 }
-
+//prints current generation
 void GameOfLife::printGeneration() {
 	cout << generationCount << endl;
 	for (int i = 0; i < height; i++) {
@@ -165,9 +174,9 @@ void GameOfLife::printGeneration() {
 		cout << endl;
 	}
 }
-
+//simulates next generation based on number of neighbours for each cell, then assigns
+//next generation to current generation and increments generation count 
 void GameOfLife::simulateGeneration() {
-	// Loop through each cell in planet
 	for (int i = 0; i < height; i++) {
 		for(int j = 0; j < width; j++) {
 			//cout << "For[" << i << "]" << "[" << j << "]" << ": " << getMates(i,j) << endl;
@@ -191,17 +200,16 @@ void GameOfLife::simulateGeneration() {
 	nextGeneration = tempGeneration;
 	generationCount++;
 }
-
+//creates random planet (world) from user given height, width, and density and populates generation
 void GameOfLife::createRandomPlanet(int pHeight, int pWidth, float density) {
 	height = pHeight;
 	width = pWidth;
 	float randNum;
 	generationCount = 0;
 
-	generation = new char*[height]; // making an array of pointers to pointers to chars. when you make an array we make a pointer to first element in an array.
-	//when you make an array of arrays you make a pointer to pointers
+	generation = new char*[height]; // making an array of pointers to pointers to chars. 
 	nextGeneration = new char*[height];
-	for (int i = 0; i < height; i++) { //for each row we create an array of chars
+	for (int i = 0; i < height; i++) { //for each row creating an array of chars
 		generation[i] = new char[width];
 		nextGeneration[i] = new char[width];
 		for(int j = 0; j < width; j++) {
@@ -213,10 +221,10 @@ void GameOfLife::createRandomPlanet(int pHeight, int pWidth, float density) {
 				generation[i][j] = '-';
 			}
 			nextGeneration[i][j] = '-';
-		} //initialize arrays with 0 first before putting generation tghere
+		} 
 	}
 }
-
+//creates planet from a given file with height and width. then populates generation based on what's in the file
 void GameOfLife::createPlanetFromFile(string fileName) {
 	ifstream inputFile;
 	inputFile.open(fileName);
@@ -258,7 +266,7 @@ void GameOfLife::createPlanetFromFile(string fileName) {
 	}
 	inputFile.close();
 }
-
+//checks if current generation is empty 
 bool GameOfLife::isGenerationEmpty(){
 	bool isEmpty = true;
 	for(int i = 0; i < height; i++) {
@@ -270,7 +278,7 @@ bool GameOfLife::isGenerationEmpty(){
 	}
 	return isEmpty;
 }
-
+//checks if generation is table
 bool GameOfLife::isGenerationStable() {
 	bool isStable = true;
 	for(int i = 0; i < height; i++) {
@@ -282,7 +290,7 @@ bool GameOfLife::isGenerationStable() {
 	}
 	return isStable;
 }
-
+//outputs generations and count into a file 
 void GameOfLife::writeGenerationIntoFile(string otherFile){
 	ofstream outputFile;
 	outputFile.open(otherFile, ios::out | ios::app);

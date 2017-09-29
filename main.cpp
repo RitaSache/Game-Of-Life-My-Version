@@ -1,9 +1,15 @@
+//Rita (Eteri) Sachechelashvili
+//1928162
+//sache100@mail.chapman.edu
+//CPSC-350-02
+//Assignment 2
+//purpose of this file is to serve as a main file for Game of Life
 #include <iostream>
 #include "GameOfLife.h"
 
 using namespace std;
-
-int main() {
+//main asks user for file or random world, mode, speed, height, width, density, output file
+int main(int argc, char**argv) {
 	int height;
 	int width;
 	float density;
@@ -17,12 +23,12 @@ int main() {
 	cin >> mapFile;
 
 	if (mapFile == "yes") {
-		cout << "Provide name of your file: " << endl;
+		cout << "Provide name path of your file: " << endl;
 		cin >> fileName;
 		cout << "Provide a mode you want: if Classic mode press (1) and enter, if Doughnut mode press (2) and enter, if Mirror mode press (3) and enter" << endl;
 		cin >> mode;
 		GameOfLife p (mode);
-		cout << "If you want to press Enter type (1), if you want a pause between generations type (2), if you want to output into a file press (3), if none of these press (4) " << endl; 
+		cout << "If you want to press Enter type (1) and enter, if you want a pause between generations type (2) and enter, if you want to output into a file press (3) and enter, if none of these press (4) and enter " << endl; 
 		cin >> outputOption;
 		
 		if(outputOption == 3) {
@@ -50,7 +56,7 @@ int main() {
 			}
 			cout << "Press enter to exit the program " << endl;
 			cin.ignore();
-			cin.ignore();
+			
 		}
 		else if(outputOption == 2) {
 			p.createPlanetFromFile(fileName);
@@ -92,7 +98,7 @@ int main() {
 		cin >> mode;
 		GameOfLife p (mode);
 
-		cout << "If you want to press Enter type (1), if you want a pause between generations type (2), if you want to output into a file press (3), if none of these press (4) " << endl; 
+		cout << "If you want to press Enter type (1) and enter, if you want a pause between generations type (2) and enter, if you want to output into a file press (3) and enter, if none of these press (4) and enter " << endl; 
 		cin >> outputOption;
 		
 		if(outputOption == 3) {
@@ -120,7 +126,7 @@ int main() {
 			}
 			cout << "Press enter to exit the program " << endl;
 			cin.ignore();
-			cin.ignore();
+			
 		}
 		else if(outputOption == 2){
 			p.createRandomPlanet(height, width, density);

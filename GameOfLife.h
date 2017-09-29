@@ -1,3 +1,9 @@
+//Rita (Eteri) Sachechelashvili
+//1928162
+//sache100@mail.chapman.edu
+//CPSC-350-02
+//Assignment 2
+//purpose of this file is to serve as a header file for Game of Life
 #include <iostream>
 using namespace std;
 
