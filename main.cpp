@@ -36,7 +36,7 @@ int main(int argc, char**argv) {
 			cin >> otherFile;
 			p.createPlanetFromFile(fileName);
 			p.writeGenerationIntoFile(otherFile);
-			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) {  
 				p.simulateGeneration();
 				p.writeGenerationIntoFile(otherFile);
 			}
@@ -49,7 +49,7 @@ int main(int argc, char**argv) {
 			p.printGeneration();
 			cin.get();
 			cin.get();
-			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) {  
 				p.simulateGeneration();
 				p.printGeneration();
 				cin.get();
@@ -62,7 +62,7 @@ int main(int argc, char**argv) {
 			p.createPlanetFromFile(fileName);
 			p.printGeneration();
 			system("pause");
-			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) {  
 				p.simulateGeneration();
 				p.printGeneration();
 				system("pause");
@@ -74,7 +74,7 @@ int main(int argc, char**argv) {
 		else if (outputOption == 4) {
 			p.createPlanetFromFile(fileName);
 			p.printGeneration();
-			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) {  
 				p.simulateGeneration();
 				p.printGeneration();
 			}
@@ -106,9 +106,9 @@ int main(int argc, char**argv) {
 			cin >> otherFile;
 			p.createRandomPlanet(height, width, density);
 			p.writeGenerationIntoFile(otherFile);
-			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
-			p.simulateGeneration();
-			p.writeGenerationIntoFile(otherFile);
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) {  
+				p.simulateGeneration();
+				p.writeGenerationIntoFile(otherFile);
 			}
 			cout << "Press enter to exit the program " << endl;
 			cin.ignore();
@@ -119,7 +119,7 @@ int main(int argc, char**argv) {
 			p.printGeneration();
 			cin.get();
 			cin.get();
-			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) {  
 				p.simulateGeneration();
 				p.printGeneration();
 				cin.get();
@@ -132,7 +132,7 @@ int main(int argc, char**argv) {
 			p.createRandomPlanet(height, width, density);
 			p.printGeneration();
 			system("pause");
-			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { 
 				p.simulateGeneration();
 				p.printGeneration();
 				system("pause");
@@ -144,7 +144,7 @@ int main(int argc, char**argv) {
 		else if (outputOption == 4) {
 			p.createRandomPlanet(height, width, density);
 			p.printGeneration();
-			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { //these should return false the first time 
+			while(!p.isGenerationEmpty() && !p.isGenerationStable()) { 
 				p.simulateGeneration();
 				p.printGeneration();
 			}
